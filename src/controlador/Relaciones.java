@@ -63,6 +63,8 @@ public class Relaciones {
 		miProductoDao.setCoordinador(miCoordinador);
 		miPersonaProductoDao.setCoordinador(miCoordinador);
 		miRegistrarPersonasGui.setCoordinador(miCoordinador);
+		miConsultaPersonaGui.setCoordinador(miCoordinador);
+		
 		//Se muestra la ventana principal.
 		miVentanaPrincipal.setVisible(true);
 	}

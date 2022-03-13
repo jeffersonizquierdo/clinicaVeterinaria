@@ -183,6 +183,13 @@ public class ConsultarPersonaGui extends JFrame implements ActionListener{
 
 	}
 
+
+	public void setCoordinador(Coordinador miCoordinador) {
+
+		this.miCoordinador = miCoordinador;
+		
+	}
+
 		
 		
 	}
