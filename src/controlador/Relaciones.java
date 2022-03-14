@@ -1,14 +1,17 @@
 package controlador;
 
-import modelo.dao.MascotaDao;
+import modelo.dao.MascotaDao; 
 import modelo.dao.NacimientoDao;
 import modelo.dao.PersonaDao;
 import modelo.dao.PersonaProductoDao;
 import modelo.dao.ProductoDao;
+import modelo.logica.Logica;
 import vista.gui.ConsultarPersonaGui;
 import vista.gui.RegistrarMascotasGui;
 import vista.gui.RegistrarPersonasGui;
 import vista.gui.RegistrarProductosGui;
+import vista.gui.TablaPersonasGui;
+import vista.gui.TablaPersonasGui;
 import vista.gui.VentanaPrincipal;
 
 public class Relaciones {
@@ -25,6 +28,8 @@ public class Relaciones {
 		ProductoDao miProductoDao;
 		PersonaProductoDao miPersonaProductoDao;
 		ConsultarPersonaGui miConsultaPersonaGui;
+		Logica miLogica;
+		TablaPersonasGui miTablaPersonaGui;
 		
 		
 		//Se instancian por unica ocasión las clases declaradas
@@ -39,6 +44,8 @@ public class Relaciones {
 		miProductoDao= new ProductoDao();
 		miPersonaProductoDao= new PersonaProductoDao();
 		miConsultaPersonaGui=new ConsultarPersonaGui(miVentanaPrincipal,true);
+		miLogica = new Logica();
+		miTablaPersonaGui = new TablaPersonasGui();
 		
 		//Se establece la relación entre el coordinador y cada instancia unica
 		//Al coordinador se le asigna el control de cada clase unica
@@ -52,6 +59,8 @@ public class Relaciones {
 		miCoordinador.setProductoDao(miProductoDao);
 		miCoordinador.setPersonaProductoDao(miPersonaProductoDao);
 		miCoordinador.setConsultarPersonaGui(miConsultaPersonaGui);
+		miCoordinador.setLogica(miLogica);
+		miCoordinador.setTablaPersonasGui(miTablaPersonaGui);
 		
 		//A cada clase unica se le asigna la unica instancia del coordinador
 		miVentanaPrincipal.setCoordinador(miCoordinador);
@@ -64,6 +73,8 @@ public class Relaciones {
 		miPersonaProductoDao.setCoordinador(miCoordinador);
 		miRegistrarPersonasGui.setCoordinador(miCoordinador);
 		miConsultaPersonaGui.setCoordinador(miCoordinador);
+		miLogica.setMiCoordinador(miCoordinador);
+		miTablaPersonaGui.setCoordinador(miCoordinador);
 		
 		//Se muestra la ventana principal.
 		miVentanaPrincipal.setVisible(true);

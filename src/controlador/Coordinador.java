@@ -5,12 +5,14 @@ import modelo.dao.NacimientoDao;
 import modelo.dao.PersonaDao;
 import modelo.dao.PersonaProductoDao;
 import modelo.dao.ProductoDao;
+import modelo.logica.Logica;
 import modelo.vo.Nacimiento;
 import modelo.vo.PersonaVo;
 import vista.gui.ConsultarPersonaGui;
 import vista.gui.RegistrarMascotasGui;
 import vista.gui.RegistrarPersonasGui;
 import vista.gui.RegistrarProductosGui;
+import vista.gui.TablaPersonasGui;
 import vista.gui.VentanaPrincipal;
 public class Coordinador {
 	
@@ -24,6 +26,8 @@ public class Coordinador {
 	MascotaDao miMascotaDao;
 	ProductoDao miProductoDao;
 	PersonaProductoDao miPersonaProductoDao;
+	Logica miLogica;
+	TablaPersonasGui miTablaPersonasGui;
 	
 	
 	public void setVentanaPrincipal(VentanaPrincipal miVentanaPrincipal) {
@@ -67,6 +71,11 @@ public class Coordinador {
 		this.miPersonaProductoDao=miPersonaProductoDao;
 	}
 	
+	public void setLogica(Logica miLogica) {
+		this.miLogica = miLogica; 
+		
+	}
+	
 
 	public void mostarVentanaRegistroPersona() {
 		miRegistrarPersonasGui.setVisible(true);
@@ -82,6 +91,7 @@ public class Coordinador {
 		return miPersonaDao.registrarPersona(miPersona);
 		
 	}
+	
 	
 	
 	
@@ -103,8 +113,37 @@ public class Coordinador {
 		return miNacimientoDao.consultarNacimiento(idNacimiento);
 	}
 
+	public String actualizarPersona(PersonaVo miPersonaVo) {
+
+		return miPersonaDao.actulizaPersona(miPersonaVo);
+		
+	}
+
+	public boolean validarCampos(PersonaVo miPersonaVo) {
+		
+		return miLogica.VelidarCampos(miPersonaVo);
+	}
+
+	public String actualizaNacimiento(Nacimiento miNacimiento) {
+		
+		return miNacimientoDao.actualizarNacimiento(miNacimiento);
+		
+	}
+
+	public void mostrarVentanaListarPersona() {
+		
+		miTablaPersonasGui.setVisible(true);
+	}
+
+	public void setTablaPersonasGui(TablaPersonasGui miTablaPersonaGui) {
+		this.miTablaPersonasGui = miTablaPersonaGui;
+		
+	}
+
+	public long buscarNacimiento(PersonaVo miPersonaVo) {
+		return miPersonaDao.buscarNac(miPersonaVo);
+	}
+
 	
-
-
-
+	
 }

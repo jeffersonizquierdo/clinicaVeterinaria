@@ -3,15 +3,20 @@ package modelo.dao;
 import controlador.Coordinador;
 import modelo.vo.Nacimiento;
 import modelo.vo.PersonaVo;
+import vista.gui.ConsultarPersonaGui;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 import controlador.Coordinador;
 import modelo.conexion.Conexion;
 import modelo.vo.PersonaVo;
 public class PersonaDao {
+	
+	
 	
 	private Coordinador micoordinador;
 
@@ -103,10 +108,76 @@ public class PersonaDao {
 			return miPersona;
 	}
 
-
+	
+	
+	public String actulizaPersona(PersonaVo miPersonaVo) {
 		
-	
-	
-	
+		String resultado="";
+		Connection connection=null;
+		Conexion miConexion=new Conexion();
+		connection=miConexion.getConnection();
+		
+		try {
+			
+			String consulta = "update  persona  set nombre_persona = ?, profesion_persona = ?, telefono_persona = ?, tipo_persona = ? where id_persona = ?;";
+			
+			PreparedStatement preStatement = connection.prepareStatement(consulta);
+			preStatement = connection.prepareStatement(consulta);
+			preStatement.setString(1, miPersonaVo.getNombre());
+			preStatement.setString(2, miPersonaVo.getProfesion());
+			preStatement.setString(3, miPersonaVo.getTelefono());
+			preStatement.setInt(4, miPersonaVo.getTipo());
+			preStatement.setLong(5, miPersonaVo.getIdPersona());
+			
+			preStatement.execute();
+
+			resultado = "ok";
+			miConexion.desconectar();
+			
+		}catch(SQLException	 e){
+            System.out.println(e);
+            resultado="error";
+        }
+		return resultado;
+	}
+
+	public long buscarNac(PersonaVo miPersonaVo) {
+		Connection connection=null;
+		Conexion miConexion=new Conexion();
+		PreparedStatement statement=null;
+		ResultSet result=null;
+
+		int i = -1;
+		
+		connection=miConexion.getConnection();
+		
+		String consulta="SELECT nacimiento_id FROM persona where id_persona= ? ";
+		
+		try {
+			if (connection!=null) {
+				statement=connection.prepareStatement(consulta);
+				statement.setLong(1, miPersonaVo.getIdPersona());
+				
+				result=statement.executeQuery();
+				
+				while(result.next()==true){
+					i = result.getInt("nacimiento_id");
+				}		
+				   miConexion.desconectar();
+			}else{
+				i = -1;
+			}			   
+		} catch (SQLException e) {
+			System.out.println("Error en la consulta de la persona: "+e.getMessage());
+		}
+		String idNac;
+		idNac = String.valueOf(i);
+		long idNacimientoDef;
+		idNacimientoDef = Long.parseLong(idNac);
+		System.out.println(idNacimientoDef);
+		
+		return idNacimientoDef;
+	}
+
 
 }

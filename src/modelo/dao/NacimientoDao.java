@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import controlador.Coordinador;
 import modelo.conexion.Conexion;
 import modelo.vo.Nacimiento;
+import modelo.vo.PersonaVo;
 public class NacimientoDao {
 	
 	private Coordinador micoordinador;
@@ -99,6 +100,44 @@ public class NacimientoDao {
 			System.out.println("Error en la consulta de la persona: "+e.getMessage());
 		}
 		return miNacimiento;		
+	}
+
+	public String actualizarNacimiento(Nacimiento miNacimiento) {
+		
+		Connection connection=null;
+		Conexion miConexion=new Conexion();
+		connection=miConexion.getConnection();
+		String comprobar = "";
+
+		
+		try {
+			
+			String consulta = "update nacimiento set ciudad_nacimiento = ?, departamento_nacimiento = ?, fecha_nacimiento =  ?, pais_nacimiento = ? where id_nacimiento = ?;";
+
+			
+			PreparedStatement preStatement = connection.prepareStatement(consulta);
+			preStatement = connection.prepareStatement(consulta);
+			preStatement.setString(1, miNacimiento.getCiudadNacimiento());
+			preStatement.setString(2, miNacimiento.getDepartamentoNacimiento());
+			preStatement.setString(3, miNacimiento.getFechaNacimiento().toString());
+			preStatement.setString(4, miNacimiento.getPaisNacimiento());
+			
+			
+			String a = "";
+			a = String.valueOf(miNacimiento.getIdNacimiento());
+			int b = -1;
+			b = Integer.parseInt(a);
+			preStatement.setInt(5, b);
+			
+			comprobar = "si";
+			
+			
+		} catch (Exception e) {
+			comprobar = "no";
+			System.out.println(e);
+		}
+		
+		return comprobar;
 	}
 
 

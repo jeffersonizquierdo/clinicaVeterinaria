@@ -1,5 +1,5 @@
 package modelo.vo;
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.List;
 
 public class PersonaVo {
@@ -31,11 +31,6 @@ public class PersonaVo {
 		this.listaMascotas = new ArrayList<MascotasVo>();
 	}
 	
-	
-	
-	
-
-
 
 	public Long getIdPersona() {
 		return idPersona;

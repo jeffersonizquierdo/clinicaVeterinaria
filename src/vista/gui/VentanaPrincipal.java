@@ -30,7 +30,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 	private JPanel contentPane;
 	private AbstractButton itemRegistrarPersonas;
 	private JMenuItem itemConsultarPersonas;
-	private JMenuItem itemActualizarPersonas;
+	private JMenuItem itemListarPersonas;
 	private JMenuItem itemEliminarPersonas;
 	private JMenuItem itemRegistrarMascotas;
 	private JMenuItem itemConsultarMascotas;
@@ -70,9 +70,9 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 		itemConsultarPersonas.addActionListener(this);
 		menuPersonas.add(itemConsultarPersonas);
 		
-		itemActualizarPersonas = new JMenuItem("Actualizar");
-		itemActualizarPersonas.addActionListener(this);
-		menuPersonas.add(itemActualizarPersonas);
+		itemListarPersonas = new JMenuItem("Listar");
+		itemListarPersonas.addActionListener(this);
+		menuPersonas.add(itemListarPersonas);
 		
 		itemEliminarPersonas = new JMenuItem("Eliminar");
 		itemEliminarPersonas.addActionListener(this);
@@ -151,6 +151,10 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 			RegistrarProductos.setVisible(true);
 		}if (e.getSource()==itemConsultarPersonas) {
 			micoordinador.mostrarVentanaConsultarPersonas();
+		} if (e.getSource() == itemListarPersonas) {
+			
+			micoordinador.mostrarVentanaListarPersona();
+			
 		}
 	}
 
