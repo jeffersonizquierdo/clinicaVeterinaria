@@ -40,6 +40,8 @@ public class ConsultarPersonaGui extends JFrame implements ActionListener{
 	private JButton btnConsultar;
 	private Coordinador miCoordinador;
 	private JButton btnActualizar;
+	private JButton btnVaciar;
+	private JButton btnVolver;
 
 
 	public ConsultarPersonaGui(VentanaPrincipal miVentanaPrincipal, boolean b) {
@@ -68,7 +70,7 @@ public class ConsultarPersonaGui extends JFrame implements ActionListener{
 		textDocumetno.setColumns(10);
 		
 		btnConsultar = new JButton("Consultar");
-		btnConsultar.setBounds(351, 68, 89, 23);
+		btnConsultar.setBounds(386, 68, 89, 23);
 		contentPane.add(btnConsultar);
 		btnConsultar.addActionListener(this);
 		
@@ -157,6 +159,7 @@ public class ConsultarPersonaGui extends JFrame implements ActionListener{
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.setBounds(521, 299, 89, 23);
 		contentPane.add(btnCancelar);
+		btnCancelar.addActionListener(this);
 		
 		btnActualizar = new JButton("Actualizar");
 		btnActualizar.setBounds(106, 299, 89, 23);
@@ -171,7 +174,17 @@ public class ConsultarPersonaGui extends JFrame implements ActionListener{
 		JLabel lblNewLabel_10_1 = new JLabel("/");
 		lblNewLabel_10_1.setBounds(192, 199, 13, 14);
 		contentPane.add(lblNewLabel_10_1);
+		
+		btnVolver = new JButton("Volver");
+		btnVolver.setBounds(27, 21, 89, 23);
+		contentPane.add(btnVolver);
+		btnVolver.addActionListener(this);
+		
+		btnVaciar = new JButton("Vaciar");
+		btnVaciar.setBounds(310, 299, 89, 23);
+		contentPane.add(btnVaciar);
 		btnCancelar.addActionListener(this);
+		btnVaciar.addActionListener(this);
 		
 		textAño.enable(false);
 		textCiudad.enable(false);
@@ -275,6 +288,53 @@ public class ConsultarPersonaGui extends JFrame implements ActionListener{
 				}
 			}
 			
+		}else if(e.getSource()==btnVaciar) {
+			
+			textAño.setText(null);
+			textCiudad.setText(null);
+			textDepartamento.setText(null);
+			textDia.setText(null);
+			textMes.setText(null);
+			textNombre.setText(null);
+			textPais.setText(null);
+			textProfecion.setText(null);
+			textTelefono.setText(null);
+			textTipo.setText(null);
+			
+			textDocumetno.setText(null);
+			
+			btnActualizar.setVisible(false);
+			
+		}else if(e.getSource()==btnVolver) {
+			textAño.enable(false);
+			textCiudad.enable(false);
+			textDepartamento.enable(false);
+			textDia.enable(false);
+			textMes.enable(false);
+			textNombre.enable(false);
+			textPais.enable(false);
+			textProfecion.enable(false);
+			textTelefono.enable(false);
+			textTipo.enable(false);
+			
+			textDocumetno.enable(true);
+			btnActualizar.setVisible(false);
+		}else if(e.getSource()==btnCancelar) {
+			textAño.setText(null);
+			textCiudad.setText(null);
+			textDepartamento.setText(null);
+			textDia.setText(null);
+			textMes.setText(null);
+			textNombre.setText(null);
+			textPais.setText(null);
+			textProfecion.setText(null);
+			textTelefono.setText(null);
+			textTipo.setText(null);
+			
+			textDocumetno.setText(null);
+			
+			btnActualizar.setVisible(false);
+			dispose();
 		}
 
 	} 
@@ -285,6 +345,4 @@ public class ConsultarPersonaGui extends JFrame implements ActionListener{
 		this.miCoordinador = miCoordinador;
 		
 	}
-
-
 }
