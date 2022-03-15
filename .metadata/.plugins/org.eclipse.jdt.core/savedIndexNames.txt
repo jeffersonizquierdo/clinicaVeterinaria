@@ -1,0 +1,7 @@
+INDEX VERSION 1.131+C:\Users\USUARIO WINDOWS\Downloads\clinicaVeterinaria\.metadata\.plugins\org.eclipse.jdt.core
+1214885980.index
+1067094681.index
+600103666.index
+1065017037.index
+3686861311.index
+1865797976.index
